@@ -1,134 +1,197 @@
-import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Brain, Rocket, Users, Calendar, Check } from 'lucide-react';
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קורס בינה מלאכותית לסוכני נסיעות</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-const LandingPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: ''
-  });
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // כאן יהיה הטיפול בשליחת הטופס
-    console.log('Form submitted:', formData);
-  };
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* Hero Section */}
-      <div className="flex flex-col items-center justify-center pt-20 pb-16 text-center px-4">
-        <Brain className="w-16 h-16 text-blue-600 mb-6" />
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          קורס בינה מלאכותית מותאם במיוחד לסוכני נסיעות
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mb-8">
-          הצטרפו לקורס המקצועי המוביל בישראל ולמדו כיצד לנצל את עוצמת הבינה המלאכותית
-          להגדלת המכירות והייעול העבודה שלכם
-        </p>
-        <Button className="bg-blue-600 text-white px-8 py-4 text-lg rounded-full hover:bg-blue-700">
-          הרשמו עכשיו
-        </Button>
-      </div>
+        .hero {
+            background: linear-gradient(to bottom, #f0f8ff, #ffffff);
+            text-align: center;
+            padding: 80px 20px;
+        }
 
-      {/* יתרונות */}
-      <div className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">למה הקורס שלנו הוא הטוב ביותר?</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-6">
-              <CardContent className="flex flex-col items-center text-center">
-                <Rocket className="w-12 h-12 text-blue-600 mb-4" />
-                <h3 className="text-xl font-bold mb-2">תכנים מותאמים אישית</h3>
-                <p>תכנים ייעודיים לענף התיירות והנסיעות, עם דגש על יישומים מעשיים</p>
-              </CardContent>
-            </Card>
-            <Card className="p-6">
-              <CardContent className="flex flex-col items-center text-center">
-                <Users className="w-12 h-12 text-blue-600 mb-4" />
-                <h3 className="text-xl font-bold mb-2">מרצים מובילים</h3>
-                <p>צוות מרצים מנוסה עם רקע עשיר בתעשיית התיירות והטכנולוגיה</p>
-              </CardContent>
-            </Card>
-            <Card className="p-6">
-              <CardContent className="flex flex-col items-center text-center">
-                <Calendar className="w-12 h-12 text-blue-600 mb-4" />
-                <h3 className="text-xl font-bold mb-2">גמישות מקסימלית</h3>
-                <p>מערך שיעורים גמיש המותאם ללוח הזמנים העמוס של סוכני נסיעות</p>
-              </CardContent>
-            </Card>
-          </div>
+        .hero h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .features {
+            padding: 60px 0;
+            background: #fff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .course-content {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        .content-list {
+            list-style: none;
+        }
+
+        .content-list li {
+            margin: 15px 0;
+            padding-right: 30px;
+            position: relative;
+        }
+
+        .content-list li::before {
+            content: "✓";
+            color: #28a745;
+            position: absolute;
+            right: 0;
+        }
+
+        .form-section {
+            padding: 60px 0;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1>קורס בינה מלאכותית מותאם במיוחד לסוכני נסיעות</h1>
+            <p>הצטרפו לקורס המקצועי המוביל בישראל ולמדו כיצד לנצל את עוצמת הבינה המלאכותית להגדלת המכירות</p>
+            <a href="#register" class="btn">הרשמו עכשיו</a>
         </div>
-      </div>
-
-      {/* תכני הקורס */}
-      <div className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">מה תלמדו בקורס?</h2>
-          <div className="space-y-4">
-            {[
-              'שימוש בכלי AI לייעול תהליכי הזמנות וניהול לקוחות',
-              'אוטומציה של משימות שגרתיות בעזרת בינה מלאכותית',
-              'שיפור חווית הלקוח באמצעות צ\'אטבוטים וכלים חכמים',
-              'ניתוח נתונים וחיזוי מגמות בענף התיירות',
-              'אסטרטגיות שיווק מתקדמות מבוססות AI'
-            ].map((item, index) => (
-              <div key={index} className="flex items-center space-x-3 rtl:space-x-reverse">
-                <Check className="w-6 h-6 text-green-500 flex-shrink-0" />
-                <p className="text-lg">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* טופס הרשמה */}
-      <div className="py-16">
-        <div className="max-w-md mx-auto px-4">
-          <Card className="p-6">
-            <CardContent>
-              <h2 className="text-2xl font-bold text-center mb-6">הרשמה לקורס</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Input
-                    type="text"
-                    placeholder="שם מלא"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full"
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    placeholder="אימייל"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full"
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="tel"
-                    placeholder="טלפון"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full"
-                  />
-                </div>
-                <Button type="submit" className="w-full bg-blue-600 text-white hover:bg-blue-700">
-                  שלחו פרטים
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
     </div>
-  );
-};
 
-export default LandingPage;
+    <section class="features">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">למה הקורס שלנו הוא הטוב ביותר?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>תכנים מותאמים אישית</h3>
+                    <p>תכנים ייעודיים לענף התיירות והנסיעות, עם דגש על יישומים מעשיים</p>
+                </div>
+                <div class="feature-card">
+                    <h3>מרצים מובילים</h3>
+                    <p>צוות מרצים מנוסה עם רקע עשיר בתעשיית התיירות והטכנולוגיה</p>
+                </div>
+                <div class="feature-card">
+                    <h3>גמישות מקסימלית</h3>
+                    <p>מערך שיעורים גמיש המותאם ללוח הזמנים העמוס של סוכני נסיעות</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-content">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">מה תלמדו בקורס?</h2>
+            <ul class="content-list">
+                <li>שימוש בכלי AI לייעול תהליכי הזמנות וניהול לקוחות</li>
+                <li>אוטומציה של משימות שגרתיות בעזרת בינה מלאכותית</li>
+                <li>שיפור חווית הלקוח באמצעות צ'אטבוטים וכלים חכמים</li>
+                <li>ניתוח נתונים וחיזוי מגמות בענף התיירות</li>
+                <li>אסטרטגיות שיווק מתקדמות מבוססות AI</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="register" class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2 style="text-align: center; margin-bottom: 30px;">הרשמה לקורס</h2>
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="שם מלא" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="אימייל" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="טלפון" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">שלחו פרטים</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
