@@ -1,0 +1,134 @@
+import React, { useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Brain, Rocket, Users, Calendar, Check } from 'lucide-react';
+
+const LandingPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // כאן יהיה הטיפול בשליחת הטופס
+    console.log('Form submitted:', formData);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      {/* Hero Section */}
+      <div className="flex flex-col items-center justify-center pt-20 pb-16 text-center px-4">
+        <Brain className="w-16 h-16 text-blue-600 mb-6" />
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          קורס בינה מלאכותית מותאם במיוחד לסוכני נסיעות
+        </h1>
+        <p className="text-xl text-gray-600 max-w-2xl mb-8">
+          הצטרפו לקורס המקצועי המוביל בישראל ולמדו כיצד לנצל את עוצמת הבינה המלאכותית
+          להגדלת המכירות והייעול העבודה שלכם
+        </p>
+        <Button className="bg-blue-600 text-white px-8 py-4 text-lg rounded-full hover:bg-blue-700">
+          הרשמו עכשיו
+        </Button>
+      </div>
+
+      {/* יתרונות */}
+      <div className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">למה הקורס שלנו הוא הטוב ביותר?</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="p-6">
+              <CardContent className="flex flex-col items-center text-center">
+                <Rocket className="w-12 h-12 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold mb-2">תכנים מותאמים אישית</h3>
+                <p>תכנים ייעודיים לענף התיירות והנסיעות, עם דגש על יישומים מעשיים</p>
+              </CardContent>
+            </Card>
+            <Card className="p-6">
+              <CardContent className="flex flex-col items-center text-center">
+                <Users className="w-12 h-12 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold mb-2">מרצים מובילים</h3>
+                <p>צוות מרצים מנוסה עם רקע עשיר בתעשיית התיירות והטכנולוגיה</p>
+              </CardContent>
+            </Card>
+            <Card className="p-6">
+              <CardContent className="flex flex-col items-center text-center">
+                <Calendar className="w-12 h-12 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold mb-2">גמישות מקסימלית</h3>
+                <p>מערך שיעורים גמיש המותאם ללוח הזמנים העמוס של סוכני נסיעות</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* תכני הקורס */}
+      <div className="py-16 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">מה תלמדו בקורס?</h2>
+          <div className="space-y-4">
+            {[
+              'שימוש בכלי AI לייעול תהליכי הזמנות וניהול לקוחות',
+              'אוטומציה של משימות שגרתיות בעזרת בינה מלאכותית',
+              'שיפור חווית הלקוח באמצעות צ\'אטבוטים וכלים חכמים',
+              'ניתוח נתונים וחיזוי מגמות בענף התיירות',
+              'אסטרטגיות שיווק מתקדמות מבוססות AI'
+            ].map((item, index) => (
+              <div key={index} className="flex items-center space-x-3 rtl:space-x-reverse">
+                <Check className="w-6 h-6 text-green-500 flex-shrink-0" />
+                <p className="text-lg">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* טופס הרשמה */}
+      <div className="py-16">
+        <div className="max-w-md mx-auto px-4">
+          <Card className="p-6">
+            <CardContent>
+              <h2 className="text-2xl font-bold text-center mb-6">הרשמה לקורס</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="שם מלא"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <Input
+                    type="email"
+                    placeholder="אימייל"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <Input
+                    type="tel"
+                    placeholder="טלפון"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="w-full"
+                  />
+                </div>
+                <Button type="submit" className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                  שלחו פרטים
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LandingPage;
